@@ -1,0 +1,13 @@
+.ThemeSwitcher__btn{
+    background-color: var(--header-icon-bg-color);
+    padding: 10px;
+    border-radius: 50%;
+
+    &:hover{
+        background-color: var(--header-icon-bg-use);
+    }
+
+    & svg{
+        fill: var(--header-icon-color);
+    }
+}

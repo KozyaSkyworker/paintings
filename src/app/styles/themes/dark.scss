@@ -1,0 +1,10 @@
+.app_theme_dark{
+    --bg-color: var(--primary-black);
+
+    --header-bg-color: var(--primary-black);
+    --header-logo-color: var(--primary-light-gray);
+    
+    --header-icon-color: var(--primary-light-gray);
+    --header-icon-bg-color: var(--secondary-black);
+    --header-icon-bg-use: var(--button-use-dark);
+}
