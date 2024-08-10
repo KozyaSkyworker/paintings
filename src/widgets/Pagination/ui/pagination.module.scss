@@ -1,13 +1,33 @@
 .Pagination{
     margin: 0 auto;
-    background-color: yellow;
+    padding-bottom: 20px;
     max-width: max-content;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     &__btn{
-        width: 24px;
-        height: 24px;
+        border-radius: var(--border-radius);
+        font-size: 16px;
+        padding: 8px;
+        border-bottom: 1px solid transparent;
+        color: var(--pagination-btn-color);
+    }
+    &__btn:hover{
+        border-bottom: 1px solid var(--pagination-btn-color);
+        font-weight: bold;
+    }
+   
+    &__btn__arrow{
+        background: transparent;
+        border-bottom: none !important;
+        fill: var(--pagination-btn-color);
+    }
+    &__btn__arrow:hover{
+        background-color: var(--pagination-btn-bg-use);
+    }
+
+    &__btn + &__btn{
+        margin-left: 4px;
     }
 }
