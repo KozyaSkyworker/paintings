@@ -1,0 +1,13 @@
+.Pagination{
+    margin: 0 auto;
+    background-color: yellow;
+    max-width: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__btn{
+        width: 24px;
+        height: 24px;
+    }
+}

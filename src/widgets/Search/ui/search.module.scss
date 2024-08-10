@@ -1,0 +1,9 @@
+.search{
+    border-radius: 4px;
+    border: 1px solid var(--primary-light-gray);
+
+    &__icon{
+        width: var(--svg-width);
+        height: var(--svg-height);
+    }
+}
