@@ -1,1 +1,1 @@
-export {PaintingsListItem } from './ui/PaintingsListItem';
+export { PaintingsListItem } from './ui/PaintingsListItem';
