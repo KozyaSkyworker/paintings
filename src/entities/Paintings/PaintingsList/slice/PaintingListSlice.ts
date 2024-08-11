@@ -4,6 +4,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 export interface PaintingsListState {
   page: number;
   limit: number;
+  search: string;
   totalCount?: number;
   hasMore: boolean;
 }
@@ -11,6 +12,7 @@ export interface PaintingsListState {
 const initialState: PaintingsListState = {
   page: 1,
   limit: 6,
+  search: '',
   totalCount: undefined,
   hasMore: true,
 };
@@ -25,10 +27,13 @@ export const paintingListSlice = createSlice({
     setTotalCount: (state, action:PayloadAction<number>) => {
       state.totalCount = action.payload;
     },
+    setSearch: (state, action: PayloadAction<string>) => {
+      state.search = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setPage, setTotalCount } = paintingListSlice.actions;
+export const { setPage, setTotalCount, setSearch } = paintingListSlice.actions;
 
 export default paintingListSlice.reducer;

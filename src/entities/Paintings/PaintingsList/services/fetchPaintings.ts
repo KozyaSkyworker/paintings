@@ -3,10 +3,17 @@ import { Painting } from '../../types/paintings';
 
 export const paintingsApi = createApi({
   reducerPath: 'paintingsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://test-front.framework.team/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_URL }),
   endpoints: (builder) => ({
-    getPaintingsByPage: builder.query< Painting[], number>({
-      query: (page) => `paintings?_page=${page}&_limit=6`,
+    getPaintingsByPage: builder.query<Painting[], {page: number, limit:number, search: string}>({
+      query: ({ page, limit, search }) => ({
+        url: 'paintings',
+        params: {
+          _limit: limit,
+          _page: page,
+          q: search,
+        },
+      }),
     }),
   }),
 });

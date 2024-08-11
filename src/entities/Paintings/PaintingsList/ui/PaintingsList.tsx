@@ -1,12 +1,21 @@
+import { useSelector } from 'react-redux';
 import { memo } from 'react';
 import cls from './PaintingsList.module.scss';
 import { useGetPaintingsByPageQuery } from '../services/fetchPaintings';
 import { PaintingsListItem } from '../../PaintingsListItem';
 import { Skeleton } from '../../../../ui/Skeleton/Skeleton';
+import { RootState } from '../../../../app/providers/store/store';
 
 export const PaintingsList = memo(() => {
-  const { data, error, isLoading } = useGetPaintingsByPageQuery(1);
+  const curPage = useSelector((state: RootState) => state.paintings.page);
+  const limit = useSelector((state: RootState) => state.paintings.limit);
+  const search = useSelector((state: RootState) => state.paintings.search);
 
+  const { data, error, isLoading } = useGetPaintingsByPageQuery({
+    page: curPage,
+    limit,
+    search,
+  });
   if (!isLoading && !data?.length) {
     return <div className="error">No Paintings :(</div>;
   }

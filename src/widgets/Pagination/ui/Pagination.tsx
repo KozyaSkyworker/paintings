@@ -1,13 +1,17 @@
 import { memo } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import cls from './pagination.module.scss';
 import ArrowIconRight from '../../../assets/ArrowIconRight.svg?react';
 import ArrowIconLeft from '../../../assets/ArrowIconLeft.svg?react';
-import { RootState } from '../../../app/providers/store/store';
+import { setPage } from '../../../entities/Paintings/PaintingsList/slice/PaintingListSlice';
 
 export const Pagination = memo(() => {
-  const pages = useSelector((state: RootState) => state.paintings.totalCount);
-  console.log(pages);
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(setPage(2));
+  };
+
   return (
     <div className={cls.Pagination}>
       <button className={`${cls.Pagination__btn} ${cls.Pagination__btn__arrow}`} type="button">
@@ -16,7 +20,7 @@ export const Pagination = memo(() => {
       <button className={cls.Pagination__btn} type="button">
         1
       </button>
-      <button className={cls.Pagination__btn} type="button">
+      <button className={cls.Pagination__btn} type="button" onClick={handleClick}>
         2
       </button>
       <button className={cls.Pagination__btn} type="button">
