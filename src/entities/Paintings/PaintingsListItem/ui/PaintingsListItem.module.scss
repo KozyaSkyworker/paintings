@@ -1,0 +1,48 @@
+.PaintingsListItem{
+    height: 185px;
+    width: 100%;
+    position: relative;
+    background-color: #ccc;
+    overflow: hidden;
+
+    & span{
+        display: block;
+    }
+    
+
+    &__img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__caption{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background-color: var(--bg-color);
+        padding: 20px 0;
+        width: 85%;
+        height: 82px;
+    }
+    &__box{
+        border-left: 2px solid var(--painting-caption-color);
+        padding-left: 20px;
+    }
+    
+    &__name{
+        margin-bottom: 4px;
+    }
+}
+
+@media (min-width: 768px) {
+    .PaintingsListItem{
+        height: 220px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .PaintingsListItem{
+        height: 260px;
+    }
+}

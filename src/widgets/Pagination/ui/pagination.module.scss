@@ -5,6 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border: 1px solid red;
 
     &__btn{
         border-radius: var(--border-radius);
@@ -14,6 +15,7 @@
         color: var(--pagination-btn-color);
     }
     &__btn:hover{
+        background-color: var(--pagination-btn-bg-use);
         border-bottom: 1px solid var(--pagination-btn-color);
         font-weight: bold;
     }

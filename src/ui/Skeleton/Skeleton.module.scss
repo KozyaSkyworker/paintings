@@ -1,0 +1,41 @@
+.Skeleton{
+    background-color: #f2f2f2;
+    height: 260px;
+    position: relative;
+    overflow: hidden;
+    opacity: .1;
+    
+    &__caption{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 85%;
+        height: 80px;
+        background-color: #9d9d9d;
+    }
+
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 5%;
+        background-color: rgba($color: #000000, $alpha: .2);
+        z-index: 10;
+        // background: linear-gradient(to right, red 0%, var(--skeleton-color) 50%, red 100%);
+        animation: load 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+}
+
+@keyframes load {
+    from {
+        left: 0px;
+    }
+
+    to {
+        left: 100%;
+    }
+}

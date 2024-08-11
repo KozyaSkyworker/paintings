@@ -27,6 +27,13 @@ module.exports = {
     'object-curly-newline': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
+    'react/jsx-props-no-spreading': [
+      2,
+      {
+        custom: 'ignore',
+      },
+    ],
+    'no-param-reassign': 'off',
     indent: ['error', 2],
     semi: 'error',
   },

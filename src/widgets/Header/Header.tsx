@@ -1,8 +1,9 @@
+import { memo } from 'react';
 import cls from './header.module.scss';
 import { ThemeSwitcher } from '../ThemeSwitcher';
 import Logo from '../../assets/Logo.svg?react';
 
-const Header = () => (
+const Header = memo(() => (
   <header className={cls.header}>
     <div className="container">
       <div className={cls.header__inner}>
@@ -13,6 +14,6 @@ const Header = () => (
       </div>
     </div>
   </header>
-);
+));
 
 export default Header;
