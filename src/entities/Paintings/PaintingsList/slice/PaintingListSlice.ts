@@ -5,7 +5,7 @@ export interface PaintingsListState {
   page: number;
   limit: number;
   search: string;
-  totalCount?: number;
+  totalPages?: number;
   hasMore: boolean;
 }
 
@@ -13,7 +13,7 @@ const initialState: PaintingsListState = {
   page: 1,
   limit: 6,
   search: '',
-  totalCount: undefined,
+  totalPages: undefined,
   hasMore: true,
 };
 
@@ -24,8 +24,10 @@ export const paintingListSlice = createSlice({
     setPage: (state, action:PayloadAction<number>) => {
       state.page = action.payload;
     },
-    setTotalCount: (state, action:PayloadAction<number>) => {
-      state.totalCount = action.payload;
+    setTotalPages: (state, action:PayloadAction<number | null | undefined>) => {
+      if (action.payload) {
+        state.totalPages = action.payload;
+      }
     },
     setSearch: (state, action: PayloadAction<string>) => {
       state.search = action.payload;
@@ -34,6 +36,6 @@ export const paintingListSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setPage, setTotalCount, setSearch } = paintingListSlice.actions;
+export const { setPage, setTotalPages, setSearch } = paintingListSlice.actions;
 
 export default paintingListSlice.reducer;

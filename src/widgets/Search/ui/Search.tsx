@@ -23,8 +23,6 @@ export const Search = memo(() => {
     dispatch(setSearch(''));
   };
 
-  console.log(isInputFocused);
-
   return (
     <div className={cls.search}>
       <div className="container">

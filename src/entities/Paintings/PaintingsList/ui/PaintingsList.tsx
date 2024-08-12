@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { useSelector } from 'react-redux';
 import { memo } from 'react';
 import cls from './PaintingsList.module.scss';
@@ -11,13 +12,22 @@ export const PaintingsList = memo(() => {
   const limit = useSelector((state: RootState) => state.paintings.limit);
   const search = useSelector((state: RootState) => state.paintings.search);
 
-  const { data, error, isLoading } = useGetPaintingsByPageQuery({
+  const {
+    data: paintings,
+    error,
+    isLoading,
+  } = useGetPaintingsByPageQuery({
     page: curPage,
     limit,
     search,
   });
-  if (!isLoading && !data?.length) {
-    return <div className="error">No Paintings :(</div>;
+
+  if (!isLoading && !paintings?.length) {
+    return (
+      <div className="error" style={{ color: 'red' }}>
+        No matches for Lorem Please try again with a different spelling or keywords.
+      </div>
+    );
   }
 
   if (error) {
@@ -28,13 +38,11 @@ export const PaintingsList = memo(() => {
     <div className={cls.PaintingsList}>
       <div className="container">
         <div className={cls.PaintingsList__inner}>
-          {data?.map((itm) => (
+          {paintings?.map((itm) => (
             <PaintingsListItem key={itm.id} {...itm} />
           ))}
 
-          {/* думаю, здесь так проще всего */}
-          {/* eslint-disable-next-line react/no-array-index-key */}
-          {isLoading && new Array(6).fill(0).map((itm, index) => <Skeleton key={index} />)}
+          {isLoading && new Array(6).fill(0).map((itm, index) => <Skeleton key={uuidv4()} />)}
         </div>
       </div>
     </div>
