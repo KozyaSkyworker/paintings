@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-import { PaintingsList } from '../entities/Paintings/PaintingsList';
-import Header from '../widgets/Header/Header';
 import { Pagination } from '../widgets/Pagination';
 import { Search } from '../widgets/Search';
-import cls from './App.module.scss';
+import { PaintingsList } from '../entities/Paintings/PaintingsList';
+import Header from '../widgets/Header/Header';
 import { ThemeContext } from './providers/theme';
+import cls from './App.module.scss';
 
 function App() {
   const { theme } = useContext(ThemeContext);

@@ -4,8 +4,8 @@ import { memo } from 'react';
 import cls from './PaintingsList.module.scss';
 import { useGetPaintingsByPageQuery } from '../services/fetchPaintings';
 import { PaintingsListItem } from '../../PaintingsListItem';
-import { Skeleton } from '../../../../ui/Skeleton/Skeleton';
-import { RootState } from '../../../../app/providers/store/store';
+import { Skeleton } from '@/ui/Skeleton/Skeleton';
+import { RootState } from '@/app/providers/store/store';
 
 export const PaintingsList = memo(() => {
   const curPage = useSelector((state: RootState) => state.paintings.page);

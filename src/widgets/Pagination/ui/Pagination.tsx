@@ -2,10 +2,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import cls from './pagination.module.scss';
-import ArrowIconRight from '../../../assets/ArrowIconRight.svg?react';
-import ArrowIconLeft from '../../../assets/ArrowIconLeft.svg?react';
-import { setPage } from '../../../entities/Paintings/PaintingsList/slice/PaintingListSlice';
-import { RootState } from '../../../app/providers/store/store';
+import ArrowIconRight from '@/assets/ArrowIconRight.svg?react';
+import ArrowIconLeft from '@/assets/ArrowIconLeft.svg?react';
+import { setPage } from '@/entities/Paintings/PaintingsList/slice/PaintingListSlice';
+import { RootState } from '@/app/providers/store/store';
 
 export const Pagination = memo(() => {
   const totalPages = useSelector((state: RootState) => state.paintings.totalPages);

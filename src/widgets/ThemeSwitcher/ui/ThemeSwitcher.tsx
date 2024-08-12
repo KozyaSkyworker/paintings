@@ -1,9 +1,9 @@
 import { memo, useContext } from 'react';
 import cls from './ThemeSwitcher.module.scss';
-import { LOCAL_STORAGE_THEME_KEY } from '../../../app/providers/theme/ThemeContext';
-import { ThemeContext, Theme } from '../../../app/providers/theme';
-import DarkIcon from '../../../assets/DarkIcon.svg?react';
-import LightIcon from '../../../assets/LightIcon.svg?react';
+import { LOCAL_STORAGE_THEME_KEY } from '@/app/providers/theme/ThemeContext';
+import { ThemeContext, Theme } from '@/app/providers/theme';
+import DarkIcon from '@/assets/DarkIcon.svg?react';
+import LightIcon from '@/assets/LightIcon.svg?react';
 
 export const ThemeSwitcher = memo(() => {
   const { theme, setTheme } = useContext(ThemeContext);

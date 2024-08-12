@@ -6,13 +6,13 @@ import cls from './PaintingsListItem.module.scss';
 export const PaintingsListItem = memo((props: Painting) => {
   const { name, created, imageUrl, authorId, locationId } = props;
 
-  useEffect(() => {
-    async function fetchSomeData() {
-      const dbData = await axios.get(`https://test-front.framework.team/authors?id=${authorId}`);
-    }
+  // useEffect(() => {
+  //   async function fetchSomeData() {
+  //     const dbData = await axios.get(`https://test-front.framework.team/authors?id=${authorId}`);
+  //   }
 
-    fetchSomeData();
-  }, [authorId]);
+  //   fetchSomeData();
+  // }, [authorId]);
 
   return (
     <div className={cls.PaintingsListItem}>

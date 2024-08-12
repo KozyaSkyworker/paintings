@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { paintingsApi } from '../../../entities/Paintings/PaintingsList/services/fetchPaintings';
-import PaintingsReducer from '../../../entities/Paintings/PaintingsList/slice/PaintingListSlice';
+import { paintingsApi } from '@/entities/Paintings/PaintingsList/services/fetchPaintings';
+import PaintingsReducer from '@/entities/Paintings/PaintingsList/slice/PaintingListSlice';
 
 export const store = configureStore({
   reducer: {

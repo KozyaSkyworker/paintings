@@ -1,13 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { ChangeEvent, memo, useState } from 'react';
 import cls from './search.module.scss';
-import SearchIcon from '../../../assets/SearchIcon.svg?react';
-import ClearIcon from '../../../assets/ClearIcon.svg?react';
-import {
-  setPage,
-  setSearch,
-} from '../../../entities/Paintings/PaintingsList/slice/PaintingListSlice';
-import { RootState } from '../../../app/providers/store/store';
+import SearchIcon from '@/assets/SearchIcon.svg?react';
+import ClearIcon from '@/assets/ClearIcon.svg?react';
+import { setPage, setSearch } from '@/entities/Paintings/PaintingsList/slice/PaintingListSlice';
+import { RootState } from '@/app/providers/store/store';
 
 export const Search = memo(() => {
   const dispatch = useDispatch();
