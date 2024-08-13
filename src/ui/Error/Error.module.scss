@@ -1,0 +1,9 @@
+.error{
+    &__text{
+        color: var(--text-color);
+    }
+
+    &__secondary__text{
+        color: var(--text-secondary-color);
+    }
+}

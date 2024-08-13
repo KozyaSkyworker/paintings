@@ -1,15 +1,16 @@
 .PaintingsList{
     margin: 20px 0 40px 0;
 
+    &__error{
+        margin-top: 60px;
+    }
+
     &__container{
         margin: 0 auto;
-        // background-color: teal;
         padding: 0 20px;
-        // max-width: 280px;
     }
 
     &__inner{
-        // background-color: yellow;
 
         display: grid;
         gap: 20px;
@@ -25,17 +26,10 @@
     }
 }
 
-// @media (min-width: 1280px) {
-    
-// }
 
 @media (min-width:1440px) {
     .PaintingsList__inner{
         gap: 32px;
         grid-template-columns: (repeat(3, 1fr));
     } 
-    // .PaintingsList__container{
-    //     max-width: 1240px;
-    //     padding: 0 100px;
-    // }
 }

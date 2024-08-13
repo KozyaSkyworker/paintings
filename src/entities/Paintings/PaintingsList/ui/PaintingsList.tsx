@@ -1,37 +1,31 @@
 import { v4 as uuidv4 } from 'uuid';
-import { useSelector } from 'react-redux';
 import { memo } from 'react';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { SerializedError } from '@reduxjs/toolkit';
 import cls from './PaintingsList.module.scss';
-import { useGetPaintingsByPageQuery } from '../services/fetchPaintings';
 import { PaintingsListItem } from '../../PaintingsListItem';
 import { Skeleton } from '@/ui/Skeleton/Skeleton';
-import { RootState } from '@/app/providers/store/store';
+import { Painting } from '@/app/types/common';
+import Error from '@/ui/Error/Error';
 
-export const PaintingsList = memo(() => {
-  const curPage = useSelector((state: RootState) => state.paintings.page);
-  const limit = useSelector((state: RootState) => state.paintings.limit);
-  const search = useSelector((state: RootState) => state.paintings.search);
+export type PaintingsListProps = {
+  paintings: Painting[] | undefined;
+  isLoading: boolean;
+  error: FetchBaseQueryError | SerializedError | undefined;
+  search: string;
+};
 
-  const {
-    data: paintings,
-    error,
-    isLoading,
-  } = useGetPaintingsByPageQuery({
-    page: curPage,
-    limit,
-    search,
-  });
-
+export const PaintingsList = memo(({ paintings, isLoading, error, search }: PaintingsListProps) => {
   if (!isLoading && !paintings?.length) {
     return (
-      <div className="error" style={{ color: 'red' }}>
-        No matches for Lorem Please try again with a different spelling or keywords.
+      <div className="container">
+        <Error msg={search} externalClass={cls.PaintingsList__error} />
       </div>
     );
   }
 
   if (error) {
-    return <div className="error">error</div>;
+    return <Error msg="Something went wrong during fetch data :(" />;
   }
 
   return (

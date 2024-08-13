@@ -8,7 +8,6 @@
     & span{
         display: block;
     }
-    
 
     &__img{
         width: 100%;
@@ -25,10 +24,34 @@
         width: 85%;
         height: 82px;
     }
+    
+    &__caption__inner{
+        position: relative;
+    }
+
     &__box{
-        border-left: 2px solid var(--painting-caption-color);
+        position: absolute;
+        // border-left: 2px solid var(--painting-caption-color);
         padding-left: 20px;
     }
+    &__box_left{
+        position: absolute;
+        // border-left: 2px solid var(--painting-caption-color);
+        padding-left: 20px;
+        transform: translateY(200%);
+    }
+
+    &:hover img{
+        transform: scale(1.1);
+    }
+    &:hover &__box{
+        transform: translateX(-100%);
+    }
+    &:hover &__box_left{
+        transform: translateX(0);
+    }
+
+    
     
     &__name{
         margin-bottom: 4px;

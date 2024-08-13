@@ -28,6 +28,10 @@
         border-bottom: none !important;
         fill: var(--pagination-btn-color);
     }
+    &__btn__arrow:disabled{
+        opacity: .4;
+        cursor:auto;
+    }
     &__btn__arrow:hover{
         background-color: var(--pagination-btn-bg-use);
     }

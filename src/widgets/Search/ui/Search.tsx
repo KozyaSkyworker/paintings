@@ -16,7 +16,7 @@ export const Search = memo(() => {
     dispatch(setSearch(e.target.value));
   };
 
-  const handleClick = () => {
+  const handleClearSearchClick = () => {
     dispatch(setSearch(''));
   };
 
@@ -37,7 +37,7 @@ export const Search = memo(() => {
               placeholder="Painting title"
             />
             {search && (
-              <button className={cls.search__btn} type="button" onClick={handleClick}>
+              <button className={cls.search__btn} type="button" onClick={handleClearSearchClick}>
                 <ClearIcon className={cls.search__clear} />
               </button>
             )}

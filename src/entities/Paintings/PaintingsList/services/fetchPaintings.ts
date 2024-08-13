@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Painting } from '../../types/paintings';
 import { setTotalPages } from '../slice/PaintingListSlice';
+import { Painting } from '@/app/types/common';
 
 export const paintingsApi = createApi({
   reducerPath: 'paintingsApi',
@@ -9,7 +9,7 @@ export const paintingsApi = createApi({
   endpoints: (builder) => ({
     getPaintingsByPage: builder.query<Painting[], {page: number, limit:number, search: string}>({
       query: ({ page, limit, search }) => ({
-        url: 'paintings',
+        url: '/paintings',
         params: {
           _limit: limit,
           _page: page,
@@ -20,7 +20,6 @@ export const paintingsApi = createApi({
       onQueryStarted: async (arg, { dispatch, queryFulfilled }) => {
         const { meta } = await queryFulfilled;
         const totalPaintings = meta?.response?.headers.get('x-total-count');
-        console.log(totalPaintings);
         dispatch(setTotalPages((Math.ceil(Number(totalPaintings) / 6))));
       },
     }),
