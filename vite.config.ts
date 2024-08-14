@@ -4,7 +4,6 @@ import sass from 'sass';
 import svgr from 'vite-plugin-svgr';
 import path from 'path';
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), svgr()],
 

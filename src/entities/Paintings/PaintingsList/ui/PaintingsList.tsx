@@ -36,7 +36,7 @@ export const PaintingsList = memo(({ paintings, isLoading, error, search }: Pain
             <PaintingsListItem key={itm.id} {...itm} />
           ))}
 
-          {isLoading && new Array(6).fill(0).map((itm, index) => <Skeleton key={uuidv4()} />)}
+          {isLoading && new Array(6).fill(0).map(() => <Skeleton key={uuidv4()} />)}
         </div>
       </div>
     </div>

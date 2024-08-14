@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb', 'airbnb/hooks'],
+  extends: ['plugin:react/recommended', 'airbnb', 'airbnb-typescript', 'airbnb/hooks'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -11,6 +11,7 @@ module.exports = {
     },
     ecmaVersion: 15,
     sourceType: 'module',
+    project: './tsconfig.json',
   },
   plugins: ['react', '@typescript-eslint', 'react-hooks'],
   rules: {
@@ -23,7 +24,7 @@ module.exports = {
     'react/function-component-definition': [0],
     'jsx-a11y/control-has-associated-label': 'off',
     'eol-last': 'off',
-    'no-unused-vars': 'warn',
+    'no-unused-vars': 'error',
     'object-curly-newline': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',

@@ -13,7 +13,7 @@ export type PaginationProps = {
 
 export const Pagination = memo(({ totalPages, curPage }: PaginationProps) => {
   const dispatch = useDispatch();
-  const d = 1;
+
   const handleClick = (newPage: number) => {
     dispatch(setPage(newPage));
   };
