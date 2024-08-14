@@ -27,7 +27,8 @@ export const Pagination = memo(({ totalPages, curPage }: PaginationProps) => {
           }`}
           type="button"
           key={uuidv4()}
-          onClick={() => handleClick(index + 1)}>
+          onClick={() => handleClick(index + 1)}
+        >
           {index + 1}
         </button>
       ));
@@ -45,7 +46,8 @@ export const Pagination = memo(({ totalPages, curPage }: PaginationProps) => {
         className={`${cls.Pagination__btn} ${cls.Pagination__btn__arrow}`}
         type="button"
         disabled={curPage === 1}
-        onClick={handleClickPageDecrement}>
+        onClick={handleClickPageDecrement}
+      >
         <ArrowIconLeft />
       </button>
       {renderPagesButtons()}
@@ -53,7 +55,8 @@ export const Pagination = memo(({ totalPages, curPage }: PaginationProps) => {
         className={`${cls.Pagination__btn} ${cls.Pagination__btn__arrow}`}
         type="button"
         disabled={curPage === totalPages}
-        onClick={handleClickPageIncrement}>
+        onClick={handleClickPageIncrement}
+      >
         <ArrowIconRight />
       </button>
     </div>

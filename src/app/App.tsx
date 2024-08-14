@@ -10,6 +10,7 @@ import cls from './App.module.scss';
 import { RootState } from './providers/store/store';
 import { setAuthors } from './providers/store/slices/authorsSlice';
 import { useGetPaintingsByPageQuery } from '@/entities/Paintings/PaintingsList/services/fetchPaintings';
+import { setLocations } from './providers/store/slices/locationsSlice';
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -20,8 +21,6 @@ function App() {
   const curPage = useSelector((state: RootState) => state.paintings.page);
   const limit = useSelector((state: RootState) => state.paintings.limit);
   const search = useSelector((state: RootState) => state.paintings.search);
-
-  console.log(search, totalPages, curPage);
 
   const {
     data: paintings,
@@ -39,7 +38,7 @@ function App() {
     }
     async function fetchAllLocations() {
       const dataLocations = await axios.get(`${import.meta.env.VITE_API_URL}/locations`);
-      dispatch(setAuthors(dataLocations.data));
+      dispatch(setLocations(dataLocations.data));
     }
 
     fetchAllAuthors();
