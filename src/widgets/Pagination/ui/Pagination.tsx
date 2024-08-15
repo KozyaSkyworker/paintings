@@ -14,7 +14,6 @@ export type PaginationProps = {
 export const Pagination = memo(({ totalPages, curPage }: PaginationProps) => {
   const dispatch = useDispatch();
 
-  // чтобы компонет пагинации был независимый это тоже стоило бы вынести
   const handleClick = (newPage: number) => {
     dispatch(setPage(newPage));
   };

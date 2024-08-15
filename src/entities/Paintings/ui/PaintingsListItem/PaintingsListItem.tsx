@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import cls from './PaintingsListItem.module.scss';
 import { Author, Location, Painting } from '@/app/types/common';
 import { RootState } from '@/app/providers/store/store';
@@ -15,10 +16,12 @@ export const PaintingsListItem = memo((props: Painting) => {
 
   return (
     <div className={cls.PaintingsListItem}>
-      <img
+      {/* так и не понял как пофиксить, чтобы картинки не дергались при отрисовке,
+       а фоном загружались */}
+      <LazyLoadImage
         className={cls.PaintingsListItem__img}
-        src={`https://test-front.framework.team/${imageUrl}`}
         alt={name}
+        src={`${import.meta.env.VITE_API_URL}/${imageUrl}`}
       />
       <div className={cls.PaintingsListItem__caption}>
         <div className={cls.PaintingsListItem__caption__inner}>

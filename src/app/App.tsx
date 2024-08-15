@@ -1,4 +1,3 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { ChangeEvent, useCallback, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { Pagination } from '../widgets/Pagination';
@@ -11,41 +10,14 @@ import { setAuthors, setIsLoadingAuthors } from './providers/store/slices/author
 import { setIsLoadingLocations, setLocations } from './providers/store/slices/locationsSlice';
 import { PaintingsList, useGetPaintingsByPageQuery } from '@/entities/Paintings';
 import { setPage, setSearch } from '@/entities/Paintings/model/slice/paintingsSlice';
+import { useAppDispatch, useAppSelector } from './hooks/hooks';
 
 function App() {
   const { theme } = useContext(ThemeContext);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  // selectors
-  const totalPages = useSelector((state: RootState) => state.paintings.totalPages);
-  const curPage = useSelector((state: RootState) => state.paintings.page);
-  const limit = useSelector((state: RootState) => state.paintings.limit);
-  const search = useSelector((state: RootState) => state.paintings.search);
-
-  // search funcs
-  const onSearchChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      dispatch(setPage(1));
-      dispatch(setSearch(e.target.value));
-    },
-    [dispatch],
-  );
-  const onSearchClear = useCallback(() => {
-    dispatch(setSearch(''));
-  }, [dispatch]);
-
-  // get paintings
-  const {
-    data: paintings,
-    error,
-    isLoading,
-  } = useGetPaintingsByPageQuery(
-    { page: curPage, limit, search },
-    { refetchOnMountOrArgChange: true },
-  );
-
-  // get authors and locations
+  // Получение авторов и локаций
   useEffect(() => {
     async function fetchAllAuthors() {
       const dataAuthors = await axios.get(`${import.meta.env.VITE_API_URL}/authors`);
@@ -64,6 +36,33 @@ function App() {
     fetchAllAuthors();
     fetchAllLocations();
   }, [dispatch]);
+
+  const totalPages = useAppSelector((state: RootState) => state.paintings.totalPages);
+  const curPage = useAppSelector((state: RootState) => state.paintings.page);
+  const limit = useAppSelector((state: RootState) => state.paintings.limit);
+  const search = useAppSelector((state: RootState) => state.paintings.search);
+
+  const onSearchChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      dispatch(setPage(1));
+      dispatch(setSearch(e.target.value));
+      // debounce поиск не получилось сделать
+    },
+    [dispatch],
+  );
+  const onSearchClear = useCallback(() => {
+    dispatch(setSearch(''));
+  }, [dispatch]);
+
+  // Получение картин
+  const {
+    data: paintings,
+    error,
+    isLoading,
+  } = useGetPaintingsByPageQuery(
+    { page: curPage, limit, search },
+    { refetchOnMountOrArgChange: true },
+  );
 
   return (
     <div className={`${cls.app} ${theme}`}>
