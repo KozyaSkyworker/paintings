@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { setTotalPages } from '../slice/PaintingListSlice';
+import { setTotalPages } from '../slice/paintingsSlice';
 import { Painting } from '@/app/types/common';
 
 export const paintingsApi = createApi({

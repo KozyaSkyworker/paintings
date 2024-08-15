@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { paintingsApi } from '@/entities/Paintings/PaintingsList/services/fetchPaintings';
-import PaintingsReducer from '@/entities/Paintings/PaintingsList/slice/PaintingListSlice';
+import { paintingsApi } from '@/entities/Paintings/model/services/fetchPaintings';
 import authorsReducer from './slices/authorsSlice';
 import locationsReducer from './slices/locationsSlice';
+import { paintingsReducer } from '@/entities/Paintings';
 
 export const store = configureStore({
   reducer: {
-    paintings: PaintingsReducer,
+    paintings: paintingsReducer,
     authors: authorsReducer,
     locations: locationsReducer,
     [paintingsApi.reducerPath]: paintingsApi.reducer,

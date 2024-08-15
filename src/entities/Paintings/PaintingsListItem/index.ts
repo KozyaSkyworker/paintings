@@ -1,1 +1,0 @@
-export { PaintingsListItem } from './ui/PaintingsListItem';

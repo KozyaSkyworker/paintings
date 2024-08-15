@@ -3,15 +3,14 @@ import { ChangeEvent, useCallback, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { Pagination } from '../widgets/Pagination';
 import { Search } from '../widgets/Search';
-import { PaintingsList } from '../entities/Paintings/PaintingsList';
 import Header from '../widgets/Header/Header';
 import { ThemeContext } from './providers/theme';
 import cls from './App.module.scss';
 import { RootState } from './providers/store/store';
 import { setAuthors, setIsLoadingAuthors } from './providers/store/slices/authorsSlice';
-import { useGetPaintingsByPageQuery } from '@/entities/Paintings/PaintingsList/services/fetchPaintings';
 import { setIsLoadingLocations, setLocations } from './providers/store/slices/locationsSlice';
-import { setPage, setSearch } from '@/entities/Paintings/PaintingsList/slice/PaintingListSlice';
+import { PaintingsList, useGetPaintingsByPageQuery } from '@/entities/Paintings';
+import { setPage, setSearch } from '@/entities/Paintings/model/slice/paintingsSlice';
 
 function App() {
   const { theme } = useContext(ThemeContext);

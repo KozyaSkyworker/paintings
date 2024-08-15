@@ -1,15 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-export interface PaintingsListState {
+export interface PaintingsState {
   hasMore: boolean;
+  // как будто бы можно было бы вынести в отдельный стейт,
+  // потому что тут как-то не смотрится
+  search: string;
+  // как будто бы можно было бы вынести в отдельный стейт,
+  // потому что тут как-то не смотрится
   totalPages?: number;
   page: number;
-  search: string;
   limit: number;
 }
 
-const initialState: PaintingsListState = {
+const initialState: PaintingsState = {
   page: 1,
   limit: 6,
   search: '',
@@ -17,7 +21,7 @@ const initialState: PaintingsListState = {
   hasMore: true,
 };
 
-export const paintingListSlice = createSlice({
+export const paintingSlice = createSlice({
   name: 'paintings',
   initialState,
   reducers: {
@@ -36,6 +40,5 @@ export const paintingListSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setPage, setTotalPages, setSearch } = paintingListSlice.actions;
-
-export default paintingListSlice.reducer;
+export const { setPage, setTotalPages, setSearch } = paintingSlice.actions;
+export const { reducer: paintingsReducer } = paintingSlice;

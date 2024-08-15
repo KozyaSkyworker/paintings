@@ -3,10 +3,10 @@ import { memo } from 'react';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { SerializedError } from '@reduxjs/toolkit';
 import cls from './PaintingsList.module.scss';
-import { PaintingsListItem } from '../../PaintingsListItem';
 import { Skeleton } from '@/ui/Skeleton/Skeleton';
 import { Painting } from '@/app/types/common';
 import Error from '@/ui/Error/Error';
+import { PaintingsListItem } from '../PaintingsListItem/PaintingsListItem';
 
 export type PaintingsListProps = {
   paintings: Painting[] | undefined;

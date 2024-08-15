@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import cls from './pagination.module.scss';
 import ArrowIconRight from '@/assets/ArrowIconRight.svg?react';
 import ArrowIconLeft from '@/assets/ArrowIconLeft.svg?react';
-import { setPage } from '@/entities/Paintings/PaintingsList/slice/PaintingListSlice';
+import { setPage } from '@/entities/Paintings/model/slice/paintingsSlice';
 
 export type PaginationProps = {
   totalPages: number | undefined;

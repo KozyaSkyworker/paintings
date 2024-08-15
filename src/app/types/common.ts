@@ -8,6 +8,7 @@ export type Location = {
   location: string
 };
 
+// можно было бы и в папку к Paintings
 export type Painting = {
   authorId: number;
   created: string;
