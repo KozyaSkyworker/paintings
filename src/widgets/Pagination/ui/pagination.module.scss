@@ -17,11 +17,6 @@
         background-color: var(--pagination-btn-bg-use);
         font-weight: 700;
     }
-    &__btn:hover{
-        background-color: var(--pagination-btn-bg-use);
-        border-bottom: 1px solid var(--pagination-btn-color);
-        font-weight: bold;
-    }
    
     &__btn__arrow{
         background: transparent;
@@ -32,11 +27,20 @@
         opacity: .4;
         cursor:auto;
     }
-    &__btn__arrow:hover{
-        background-color: var(--pagination-btn-bg-use);
-    }
 
     &__btn + &__btn{
         margin-left: 4px;
+    }
+}
+
+// ниже (мобилки) ховера нет
+@media (min-width: 1280px) {
+    .Pagination__btn__number:hover{
+        background-color: var(--pagination-btn-bg-use);
+        border-bottom: 1px solid var(--pagination-btn-color);
+        font-weight: bold;
+    }
+    .Pagination__btn__arrow:hover{
+        background-color: var(--pagination-btn-bg-use);
     }
 }

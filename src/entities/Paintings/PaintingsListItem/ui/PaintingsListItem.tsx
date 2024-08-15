@@ -27,8 +27,8 @@ export const PaintingsListItem = memo((props: Painting) => {
             <span className={`${cls.PaintingsListItem__year} caption_big`}>{created}</span>
           </div>
           <div className={cls.PaintingsListItem__box_left}>
-            <h1>{curAuthor?.name}</h1>
-            <span className="caption_big">{curLocation?.location}</span>
+            <h1>{curAuthor ? curAuthor.name : 'author'}</h1>
+            <span className="caption_big">{curLocation ? curLocation.location : 'location'}</span>
           </div>
         </div>
       </div>

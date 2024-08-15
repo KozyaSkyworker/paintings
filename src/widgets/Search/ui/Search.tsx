@@ -1,24 +1,16 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { ChangeEvent, memo, useState } from 'react';
 import cls from './search.module.scss';
 import SearchIcon from '@/assets/SearchIcon.svg?react';
 import ClearIcon from '@/assets/ClearIcon.svg?react';
-import { setPage, setSearch } from '@/entities/Paintings/PaintingsList/slice/PaintingListSlice';
-import { RootState } from '@/app/providers/store/store';
 
-export const Search = memo(() => {
-  const dispatch = useDispatch();
-  const search = useSelector((state: RootState) => state.paintings.search);
+export type SearchProps = {
+  value: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onClear: () => void;
+};
+
+export const Search = memo(({ value, onChange, onClear }: SearchProps) => {
   const [isInputFocused, setIsInputFocused] = useState(false);
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(setPage(1));
-    dispatch(setSearch(e.target.value));
-  };
-
-  const handleClearSearchClick = () => {
-    dispatch(setSearch(''));
-  };
 
   return (
     <div className={cls.search}>
@@ -30,14 +22,14 @@ export const Search = memo(() => {
             <input
               className={`${cls.search__input} paragraph_base `}
               type="text"
-              value={search}
-              onChange={handleChange}
+              value={value}
+              onChange={onChange}
               onFocus={() => setIsInputFocused(true)}
               onBlur={() => setIsInputFocused(false)}
               placeholder="Painting title"
             />
-            {search && (
-              <button className={cls.search__btn} type="button" onClick={handleClearSearchClick}>
+            {value && (
+              <button className={cls.search__btn} type="button" onClick={onClear}>
                 <ClearIcon className={cls.search__clear} />
               </button>
             )}

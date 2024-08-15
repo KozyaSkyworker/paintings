@@ -29,7 +29,7 @@ export const PaintingsList = memo(({ paintings, isLoading, error, search }: Pain
   }
 
   return (
-    <div className={cls.PaintingsList}>
+    <section className={cls.PaintingsList}>
       <div className="container">
         <div className={cls.PaintingsList__inner}>
           {paintings?.map((itm) => (
@@ -39,6 +39,6 @@ export const PaintingsList = memo(({ paintings, isLoading, error, search }: Pain
           {isLoading && new Array(6).fill(0).map(() => <Skeleton key={uuidv4()} />)}
         </div>
       </div>
-    </div>
+    </section>
   );
 });

@@ -2,11 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 export interface PaintingsListState {
-  page: number;
-  limit: number;
-  search: string;
-  totalPages?: number;
   hasMore: boolean;
+  totalPages?: number;
+  page: number;
+  search: string;
+  limit: number;
 }
 
 const initialState: PaintingsListState = {
