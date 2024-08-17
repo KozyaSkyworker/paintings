@@ -1,16 +1,19 @@
-import { ChangeEvent, useCallback, useContext, useEffect } from 'react';
+import { ChangeEvent, useCallback, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Pagination } from '../widgets/Pagination';
 import { Search } from '../widgets/Search';
 import Header from '../widgets/Header/Header';
 import { ThemeContext } from './providers/theme';
 import cls from './App.module.scss';
-import { RootState } from './providers/store/store';
 import { setAuthors, setIsLoadingAuthors } from './providers/store/slices/authorsSlice';
 import { setIsLoadingLocations, setLocations } from './providers/store/slices/locationsSlice';
 import { PaintingsList, useGetPaintingsByPageQuery } from '@/entities/Paintings';
 import { setPage, setSearch } from '@/entities/Paintings/model/slice/paintingsSlice';
 import { useAppDispatch, useAppSelector } from './hooks/hooks';
+import { getPage } from '@/entities/Paintings/model/selectors/getPage';
+import { getLimit } from '@/entities/Paintings/model/selectors/getLimit';
+import { getSearch } from '@/entities/Paintings/model/selectors/getSearch';
+import { getTotalPages } from '@/entities/Paintings/model/selectors/getTotalPages';
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -37,19 +40,28 @@ function App() {
     fetchAllLocations();
   }, [dispatch]); // в этом конкретном случае решил сделать загрузку авторов и локция единожды
 
-  const totalPages = useAppSelector((state: RootState) => state.paintings.totalPages);
-  const curPage = useAppSelector((state: RootState) => state.paintings.page || 1);
-  const limit = useAppSelector((state: RootState) => state.paintings.limit || 6);
-  const search = useAppSelector((state: RootState) => state.paintings.search || '');
+  const totalPages = useAppSelector(getTotalPages);
+  const curPage = useAppSelector(getPage);
+  const limit = useAppSelector(getLimit);
+  const search = useAppSelector(getSearch);
 
-  const onSearchChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
+  const [localSearch, setLocalSearch] = useState(search);
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
       dispatch(setPage(1));
-      dispatch(setSearch(e.target.value));
-      // debounce поиск не получилось сделать
-    },
-    [dispatch],
-  );
+      dispatch(setSearch(localSearch));
+    }, 300);
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [localSearch, dispatch]);
+
+  const onSearchChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    setLocalSearch(e.target.value);
+  }, []);
+
   const onSearchClear = useCallback(() => {
     dispatch(setSearch(''));
   }, [dispatch]);
@@ -68,7 +80,7 @@ function App() {
     <div className={`${cls.app} ${theme}`}>
       <Header />
       <main className="main">
-        <Search value={search} onChange={onSearchChange} onClear={onSearchClear} />
+        <Search value={localSearch} onChange={onSearchChange} onClear={onSearchClear} />
         <PaintingsList paintings={paintings} isLoading={isLoading} search={search} error={error} />
         {paintings
           ? paintings.length > 0 && <Pagination totalPages={totalPages} curPage={curPage} />
