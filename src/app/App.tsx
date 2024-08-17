@@ -35,12 +35,12 @@ function App() {
 
     fetchAllAuthors();
     fetchAllLocations();
-  }, [dispatch]);
+  }, [dispatch]); // в этом конкретном случае решил сделать загрузку авторов и локция единожды
 
   const totalPages = useAppSelector((state: RootState) => state.paintings.totalPages);
-  const curPage = useAppSelector((state: RootState) => state.paintings.page);
-  const limit = useAppSelector((state: RootState) => state.paintings.limit);
-  const search = useAppSelector((state: RootState) => state.paintings.search);
+  const curPage = useAppSelector((state: RootState) => state.paintings.page || 1);
+  const limit = useAppSelector((state: RootState) => state.paintings.limit || 6);
+  const search = useAppSelector((state: RootState) => state.paintings.search || '');
 
   const onSearchChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -70,7 +70,9 @@ function App() {
       <main className="main">
         <Search value={search} onChange={onSearchChange} onClear={onSearchClear} />
         <PaintingsList paintings={paintings} isLoading={isLoading} search={search} error={error} />
-        {paintings?.length && <Pagination totalPages={totalPages} curPage={curPage} />}
+        {paintings
+          ? paintings.length > 0 && <Pagination totalPages={totalPages} curPage={curPage} />
+          : ''}
       </main>
     </div>
   );

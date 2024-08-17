@@ -7,7 +7,7 @@ const Header = memo(() => (
   <header className={cls.header}>
     <div className="container">
       <div className={cls.header__inner}>
-        <a href="/">
+        <a href="https://framework.team/">
           <Logo className={cls.header__logo} />
         </a>
         <ThemeSwitcher />

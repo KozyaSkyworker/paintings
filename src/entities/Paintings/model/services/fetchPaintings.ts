@@ -13,11 +13,12 @@ export const paintingsApi = createApi({
         params: {
           _limit: limit,
           _page: page,
-          q: search,
+          name_like: search,
         },
       }),
       transformResponse: (response: Painting[]) => response,
-      onQueryStarted: async (arg, { dispatch, queryFulfilled }) => {
+      onQueryStarted: async (args, { dispatch, queryFulfilled }) => {
+        window.history.pushState(null, '', `?search=${args.search}&page=${args.page}`);
         const { meta } = await queryFulfilled;
         const totalPaintings = meta?.response?.headers.get('x-total-count');
         dispatch(setTotalPages((Math.ceil(Number(totalPaintings) / 6))));

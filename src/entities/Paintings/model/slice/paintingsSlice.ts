@@ -14,9 +14,9 @@ export interface PaintingsState {
 }
 
 const initialState: PaintingsState = {
-  page: 1,
+  page: Number(new URLSearchParams(window.location.search).get('page')) || 1,
   limit: 6,
-  search: '',
+  search: new URLSearchParams(window.location.search).get('search') || '',
   totalPages: undefined,
   hasMore: true,
 };
