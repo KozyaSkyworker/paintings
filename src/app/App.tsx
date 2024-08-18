@@ -64,6 +64,7 @@ function App() {
 
   const onSearchClear = useCallback(() => {
     dispatch(setSearch(''));
+    setLocalSearch('');
   }, [dispatch]);
 
   // Получение картин
