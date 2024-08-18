@@ -19,7 +19,9 @@ export const PaintingsList = memo(({ paintings, isLoading, error, search }: Pain
   if (!isLoading && !paintings?.length) {
     return (
       <div className="container">
-        <Error msg={search} externalClass={cls.PaintingsList__error} />
+        <div className={cls.PaintingsList__inner}>
+          <Error msg={search} externalClass={cls.PaintingsList__error} />
+        </div>
       </div>
     );
   }

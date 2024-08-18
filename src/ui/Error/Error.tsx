@@ -8,7 +8,7 @@ export type ErrorProps = {
 const Error = (props: ErrorProps) => {
   const { msg, externalClass = '' } = props;
   return (
-    <div className={`${cls.error} ${externalClass}`}>
+    <div className={`${externalClass}`}>
       <p className={`${cls.error__text} paragraph_big_light`}>
         No matches for
         {' '}
